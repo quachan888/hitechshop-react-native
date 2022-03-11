@@ -15,7 +15,7 @@ const slideImages = [
 
 const HomeScreen = ({ navigation }) => {
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <ScrollView>
                 {/* Ads slideshow */}
                 <SliderBox
@@ -42,7 +42,7 @@ const HomeScreen = ({ navigation }) => {
                     />
                 ))}
             </ScrollView>
-        </SafeAreaView>
+        </View>
     );
 };
 

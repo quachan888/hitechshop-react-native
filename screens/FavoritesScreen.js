@@ -1,35 +1,28 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 import React from 'react';
-import { AirbnbRating } from 'react-native-elements';
+import { products } from '../services/products';
+import ProductCardComponent from '../components/ProductCardComponent';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const FavoritesScreen = () => {
+const FavoritesScreen = ({ navigation }) => {
+    const favoritesProducts = products.filter((e) => e.rating.count >= 300);
+
     return (
-        <SafeAreaView>
-            <AirbnbRating
-                isDisabled={true}
-                count={5}
-                defaultRating={2}
-                size={20}
-                showRating={false}
-            />
-            <AirbnbRating
-                count={11}
-                reviews={[
-                    'Terrible',
-                    'Bad',
-                    'Meh',
-                    'OK',
-                    'Good',
-                    'Hmm...',
-                    'Very Good',
-                    'Wow',
-                    'Amazing',
-                    'Unbelievable',
-                    'Jesus'
-                ]}
-                defaultRating={11}
-                size={20}
+        <SafeAreaView style={styles.container}>
+            <FlatList
+                data={favoritesProducts}
+                renderItem={({ item }) => (
+                    <ProductCardComponent
+                        item={item}
+                        navigation={navigation}
+                        style={{ margin: 10 }}
+                    />
+                )}
+                keyExtractor={(item) => item.id}
+                numColumns={2}
+                columnWrapperStyle={styles.row}
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
             />
         </SafeAreaView>
     );
@@ -37,4 +30,13 @@ const FavoritesScreen = () => {
 
 export default FavoritesScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: 'white',
+        padding: 10
+    },
+    row: {
+        flex: 1,
+        justifyContent: 'space-around'
+    }
+});

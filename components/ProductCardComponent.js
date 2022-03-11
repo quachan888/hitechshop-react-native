@@ -10,10 +10,13 @@ const ProductCardComponent = ({ item, navigation }) => {
             }
         >
             <View style={styles.cardContainer}>
-                <Image
-                    source={{ uri: item.image, width: 180, height: 200 }}
-                    style={styles.image}
-                />
+                {item.rating.count > 400 && (
+                    <View style={styles.floatBadge}>
+                        <Text style={styles.floatText}>HOT</Text>
+                    </View>
+                )}
+
+                <Image source={{ uri: item.image }} style={styles.image} />
                 <View style={styles.ratingContainer}>
                     <Rating
                         ratingCount={5}
@@ -51,10 +54,13 @@ const styles = StyleSheet.create({
         margin: 8,
         padding: 8,
         width: 200,
-        borderRadius: 10
+        borderRadius: 10,
+        paddingHorizontal: 10,
+        position: 'relative'
     },
     image: {
-        resizeMode: 'contain'
+        resizeMode: 'contain',
+        height: 180
     },
     title: {
         fontWeight: 'bold',
@@ -99,5 +105,21 @@ const styles = StyleSheet.create({
         color: '#9B9B9B',
         fontSize: 14,
         marginLeft: 10
+    },
+    floatBadge: {
+        backgroundColor: '#DB3022',
+        borderRadius: 20,
+        position: 'absolute',
+        textAlign: 'center',
+        zIndex: 50,
+        top: 5,
+        left: 10
+    },
+    floatText: {
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        color: 'white',
+        fontSize: 12,
+        fontWeight: 'bold'
     }
 });
