@@ -4,11 +4,27 @@ import ProductsListComponent from '../components/ProductsListComponent';
 import { categogies } from '../services/categories';
 import { products } from '../services/products';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { SliderBox } from 'react-native-image-slider-box';
+
+const slideImages = [
+    'https://source.unsplash.com/lpGm415q9JA',
+    'https://source.unsplash.com/ZmgJiztRHXE',
+    'https://source.unsplash.com/xrVDYZRGdw4',
+    'https://source.unsplash.com/Nv4QHkTVEaI'
+];
 
 const HomeScreen = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView>
+                {/* Ads slideshow */}
+                <SliderBox
+                    images={slideImages}
+                    autoplay
+                    circleLoop
+                    sliderBoxHeight={250}
+                />
+
                 {/* List 6 top rating products */}
                 <ProductsListComponent
                     products={products.filter((product) => product.rating.rate >= 4.5)}

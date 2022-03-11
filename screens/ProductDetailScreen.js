@@ -7,17 +7,25 @@ import {
     ScrollView
 } from 'react-native';
 import React from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { products } from '../services/products';
 import { Rating } from 'react-native-ratings';
+import { SliderBox } from 'react-native-image-slider-box';
 
 const ProductDetailScreen = ({ route, navigation }) => {
     const id = route.params.id;
     const item = products.filter((e) => e.id === id)[0];
 
+    const slideImages = [item.image, item.image, item.image, item.image, item.image];
+
     return (
         <ScrollView style={styles.mainScroll}>
-            <Image source={{ uri: item.image }} style={styles.image} />
+            <SliderBox
+                images={slideImages}
+                autoplay
+                circleLoop
+                sliderBoxHeight={300}
+                resizeMode={'contain'}
+            />
             <View style={styles.productDetails}>
                 <Text style={styles.title} numberOfLines={2} ellipsizeMode="tail">
                     {item.title}
@@ -57,14 +65,10 @@ const styles = StyleSheet.create({
         padding: 12,
         marginTop: 12
     },
-    image: {
-        backgroundColor: 'white',
-        width: '100%',
-        height: 300,
-        resizeMode: 'contain'
-    },
+
     title: {
         fontWeight: 'bold',
+        marginTop: 12,
         marginBottom: 12,
         fontSize: 24,
         color: '#222222'
