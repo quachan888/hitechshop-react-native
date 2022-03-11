@@ -29,11 +29,13 @@ const ProductCardComponent = ({ item, navigation }) => {
                     {item.title}
                 </Text>
                 {item.price < 100 ? (
-                    <Text style={styles.price}>${item.price}</Text>
+                    <Text style={styles.price}>${item.price.toFixed(2)}</Text>
                 ) : (
                     <View style={styles.discountPriceContainer}>
-                        <Text style={styles.priceOld}>${item.price}</Text>
-                        <Text style={styles.priceNew}>${item.price * 0.8}</Text>
+                        <Text style={styles.priceOld}>${item.price.toFixed(2)}</Text>
+                        <Text style={styles.priceNew}>
+                            ${(item.price * 0.8).toFixed(2)}
+                        </Text>
                     </View>
                 )}
             </View>

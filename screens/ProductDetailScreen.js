@@ -44,7 +44,7 @@ const ProductDetailScreen = ({ route, navigation }) => {
                             <Text style={styles.rating}>({item.rating.count})</Text>
                         </View>
                     </View>
-                    <Text style={styles.price}>${item.price}</Text>
+                    <Text style={styles.price}>${item.price.toFixed(2)}</Text>
                 </View>
                 <Text style={styles.description}>
                     {item.description.charAt(0).toUpperCase() + item.description.slice(1)}
