@@ -1,15 +1,14 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
-// import { AirbnbRating } from 'react-native-elements';
-import { Rating, AirbnbRating } from 'react-native-ratings';
+import { Rating } from 'react-native-ratings';
 
-const ProductCardComponent = ({ item }) => {
-    const handleOnPress = () => {
-        console.log('item Pressed');
-    };
-
+const ProductCardComponent = ({ item, navigation }) => {
     return (
-        <TouchableOpacity onPress={() => handleOnPress()}>
+        <TouchableOpacity
+            onPress={() =>
+                navigation.navigate('ProductDetail', { id: item.id, name: item.title })
+            }
+        >
             <View style={styles.cardContainer}>
                 <Image
                     source={{ uri: item.image, width: 180, height: 200 }}

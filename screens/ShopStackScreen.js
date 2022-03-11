@@ -9,7 +9,11 @@ const ShopStack = createNativeStackNavigator();
 const ShopStackScreen = () => {
     return (
         <ShopStack.Navigator>
-            <ShopStack.Screen name="ShopScreen" component={ShopScreen} />
+            <ShopStack.Screen
+                name="ShopScreen"
+                component={ShopScreen}
+                options={{ headerShown: false }}
+            />
             <ShopStack.Screen name="ProductDetail" component={ProductDetailScreen} />
         </ShopStack.Navigator>
     );

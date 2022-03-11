@@ -9,8 +9,16 @@ const HomeStack = createNativeStackNavigator();
 const HomeStackScreen = () => {
     return (
         <HomeStack.Navigator>
-            <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
-            <HomeStack.Screen name="ProductDetail" component={ProductDetailScreen} />
+            <HomeStack.Screen
+                name="HomeScreen"
+                component={HomeScreen}
+                options={{ headerShown: false }}
+            />
+            <HomeStack.Screen
+                name="ProductDetail"
+                component={ProductDetailScreen}
+                options={({ route }) => ({ title: route.params.name })}
+            />
         </HomeStack.Navigator>
     );
 };

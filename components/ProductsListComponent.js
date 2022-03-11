@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, FlatList } from 'react-native';
 import React from 'react';
 import ProductCardComponent from './ProductCardComponent';
 
-const ProductsListComponent = ({ products, title }) => {
+const ProductsListComponent = ({ products, title, navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.titleContainer}>
@@ -11,7 +11,9 @@ const ProductsListComponent = ({ products, title }) => {
             </View>
             <FlatList
                 data={products}
-                renderItem={ProductCardComponent}
+                renderItem={({ item }) => (
+                    <ProductCardComponent item={item} navigation={navigation} />
+                )}
                 keyExtractor={(item) => item.id}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}

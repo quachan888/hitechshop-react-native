@@ -7,65 +7,64 @@ import CartScreen from './screens/CartScreen';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import HomeStackScreen from './screens/HomeStackScreen';
 import ShopStackScreen from './screens/ShopStackScreen';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
     return (
-        <NavigationContainer>
-            <Tab.Navigator options={{ headerShown: false }}>
-                <Tab.Screen
-                    name="Home"
-                    component={HomeStackScreen}
-                    options={{
-                        tabBarIcon: ({ color, size }) => (
-                            <FontAwesome name="home" color={color} size={size} />
-                        )
-                    }}
-                />
-                <Tab.Screen
-                    name="Favorites"
-                    component={FavoritesScreen}
-                    options={{
-                        tabBarIcon: ({ color, size }) => (
-                            <FontAwesome name="heart" color={color} size={size} />
-                        )
-                    }}
-                />
-                <Tab.Screen
-                    name="Shop"
-                    component={ShopStackScreen}
-                    options={{
-                        tabBarIcon: ({ color, size }) => (
-                            <FontAwesome
-                                name="shopping-bag"
-                                color={color}
-                                size={size * 1.25}
-                            />
-                        )
-                    }}
-                />
-                <Tab.Screen
-                    name="Cart"
-                    component={CartScreen}
-                    options={{
-                        tabBarIcon: ({ color, size }) => (
-                            <FontAwesome name="shopping-cart" color={color} size={size} />
-                        ),
-                        tabBarBadge: 2
-                    }}
-                />
-                <Tab.Screen
-                    name="Profile"
-                    component={ProfileScreen}
-                    options={{
-                        tabBarIcon: ({ color, size }) => (
-                            <FontAwesome name="user" color={color} size={size} />
-                        )
-                    }}
-                />
-            </Tab.Navigator>
-        </NavigationContainer>
+        <SafeAreaProvider>
+            <NavigationContainer>
+                <Tab.Navigator screenOptions={{ headerShown: false }}>
+                    <Tab.Screen
+                        name="Home"
+                        component={HomeStackScreen}
+                        options={{
+                            tabBarIcon: ({ color, size }) => (
+                                <FontAwesome
+                                    name="shopping-bag"
+                                    color={color}
+                                    size={size}
+                                />
+                            )
+                        }}
+                    />
+                    <Tab.Screen
+                        name="Favorites"
+                        component={FavoritesScreen}
+                        options={{
+                            tabBarIcon: ({ color, size }) => (
+                                <FontAwesome name="heart" color={color} size={size} />
+                            )
+                        }}
+                    />
+
+                    <Tab.Screen
+                        name="Cart"
+                        component={CartScreen}
+                        options={{
+                            tabBarIcon: ({ color, size }) => (
+                                <FontAwesome
+                                    name="shopping-cart"
+                                    color={color}
+                                    size={size}
+                                />
+                            ),
+                            tabBarBadge: 2
+                        }}
+                    />
+                    <Tab.Screen
+                        name="Profile"
+                        component={ProfileScreen}
+                        options={{
+                            tabBarIcon: ({ color, size }) => (
+                                <FontAwesome name="user" color={color} size={size} />
+                            )
+                        }}
+                    />
+                </Tab.Navigator>
+            </NavigationContainer>
+        </SafeAreaProvider>
     );
 }
 

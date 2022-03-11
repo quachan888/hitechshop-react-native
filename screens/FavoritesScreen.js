@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { AirbnbRating } from 'react-native-elements';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const FavoritesScreen = () => {
     return (
-        <View>
+        <SafeAreaView>
             <AirbnbRating
                 isDisabled={true}
                 count={5}
@@ -30,7 +31,7 @@ const FavoritesScreen = () => {
                 defaultRating={11}
                 size={20}
             />
-        </View>
+        </SafeAreaView>
     );
 };
 
