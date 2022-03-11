@@ -28,7 +28,14 @@ const ProductCardComponent = ({ item, navigation }) => {
                 <Text style={styles.title} numberOfLines={2} ellipsizeMode="tail">
                     {item.title}
                 </Text>
-                <Text style={styles.price}>${item.price}</Text>
+                {item.price < 100 ? (
+                    <Text style={styles.price}>${item.price}</Text>
+                ) : (
+                    <View style={styles.discountPriceContainer}>
+                        <Text style={styles.priceOld}>${item.price}</Text>
+                        <Text style={styles.priceNew}>${item.price * 0.8}</Text>
+                    </View>
+                )}
             </View>
         </TouchableOpacity>
     );
@@ -42,16 +49,7 @@ const styles = StyleSheet.create({
         margin: 8,
         padding: 8,
         width: 200,
-        borderRadius: 8,
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 1
-        },
-        shadowOpacity: 0.22,
-        shadowRadius: 2.22,
-
-        elevation: 3
+        borderRadius: 10
     },
     image: {
         resizeMode: 'contain'
@@ -64,11 +62,27 @@ const styles = StyleSheet.create({
     },
     price: {
         fontWeight: 'bold',
-        color: '#DB3022',
+        color: '#222222',
         paddingVertical: 4,
         fontSize: 16
     },
-
+    priceOld: {
+        fontWeight: 'bold',
+        color: '#9B9B9B',
+        paddingVertical: 4,
+        textDecorationLine: 'line-through',
+        fontSize: 16
+    },
+    priceNew: {
+        fontWeight: 'bold',
+        color: '#DB3022',
+        paddingVertical: 4,
+        fontSize: 16,
+        marginLeft: 8
+    },
+    discountPriceContainer: {
+        flexDirection: 'row'
+    },
     category: {
         color: '#9B9B9B',
         paddingVertical: 4,

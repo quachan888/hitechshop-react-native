@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import React from 'react';
 import ProductCardComponent from './ProductCardComponent';
 
@@ -7,7 +7,16 @@ const ProductsListComponent = ({ products, title, navigation }) => {
         <View style={styles.container}>
             <View style={styles.titleContainer}>
                 <Text style={styles.title}>{title}</Text>
-                <Text style={styles.viewAll}>View all</Text>
+                <TouchableOpacity
+                    onPress={() =>
+                        navigation.navigate('Category', {
+                            category: title,
+                            name: title.charAt(0).toUpperCase() + title.slice(1)
+                        })
+                    }
+                >
+                    <Text style={styles.viewAll}>View all</Text>
+                </TouchableOpacity>
             </View>
             <FlatList
                 data={products}
