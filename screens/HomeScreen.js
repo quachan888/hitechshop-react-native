@@ -1,10 +1,10 @@
 import { StyleSheet, Text, ScrollView, View, Button } from 'react-native';
-import React from 'react';
+import React, { useContext } from 'react';
 import ProductsListComponent from '../components/ProductsListComponent';
 import { categogies } from '../services/categories';
-import { products } from '../services/products';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SliderBox } from 'react-native-image-slider-box';
+import { ProductContext } from '../context/products-context';
 
 const slideImages = [
     'https://source.unsplash.com/lpGm415q9JA',
@@ -14,20 +14,22 @@ const slideImages = [
 ];
 
 const HomeScreen = ({ navigation }) => {
+    const { products } = useContext(ProductContext);
+    const topProducts = products.filter((product) => product.rating.rate >= 4.5);
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <ScrollView>
                 {/* Ads slideshow */}
                 <SliderBox
                     images={slideImages}
                     autoplay
                     circleLoop
-                    sliderBoxHeight={250}
+                    sliderBoxHeight={200}
                 />
 
                 {/* List 6 top rating products */}
                 <ProductsListComponent
-                    products={products.filter((product) => product.rating.rate >= 4.5)}
+                    products={topProducts}
                     title="Best Seller"
                     navigation={navigation}
                 />
@@ -42,7 +44,7 @@ const HomeScreen = ({ navigation }) => {
                     />
                 ))}
             </ScrollView>
-        </View>
+        </SafeAreaView>
     );
 };
 

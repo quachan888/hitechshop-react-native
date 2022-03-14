@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import React from 'react';
-import { products } from '../services/products';
+import React, { useContext } from 'react';
+import { ProductContext } from '../context/products-context';
 import ProductCardComponent from '../components/ProductCardComponent';
 
 const CategoryScreen = ({ route, navigation }) => {
+    const { products } = useContext(ProductContext);
     const category = route.params.category;
 
     // Prepare fake data

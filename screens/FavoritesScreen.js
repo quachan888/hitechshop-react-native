@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import React from 'react';
-import { products } from '../services/products';
+import React, { useContext } from 'react';
+import { ProductContext } from '../context/products-context';
 import ProductCardComponent from '../components/ProductCardComponent';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const FavoritesScreen = ({ navigation }) => {
+    const { products } = useContext(ProductContext);
     const favoritesProducts = products.filter((e) => e.rating.count >= 300);
 
     return (

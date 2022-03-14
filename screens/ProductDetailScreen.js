@@ -6,12 +6,13 @@ import {
     ActivityIndicator,
     ScrollView
 } from 'react-native';
-import React from 'react';
-import { products } from '../services/products';
+import React, { useContext } from 'react';
+import { ProductContext } from '../context/products-context';
 import { Rating } from 'react-native-ratings';
 import { SliderBox } from 'react-native-image-slider-box';
 
 const ProductDetailScreen = ({ route, navigation }) => {
+    const { products } = useContext(ProductContext);
     const id = route.params.id;
     const item = products.filter((e) => e.id === id)[0];
 
